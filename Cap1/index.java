@@ -18,16 +18,14 @@ public class index {
  * Lista_Busca_Binarya
  */
 class Lista_Busca_Binarya {
-    int tam;
     ArrayList<Integer> Listinha;
 
     Lista_Busca_Binarya(ArrayList<Integer> x) {
         this.Listinha = x;
-        this.tam = x.size();
     }
 
     int Busca(int x) {
-        int in = 0, fin = this.tam;
+        int in = 0, fin = this.listinha.size();
         while (in <= fin) {
             int meio = (in + fin) / 2;
             //System.out.println(meio);
