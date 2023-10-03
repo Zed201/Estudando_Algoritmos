@@ -10,7 +10,6 @@ int Binary(vector<int> vetor, int item, int tamanho){
     {
         int meio = (alto + baixo) / 2;
         int chute = vetor[meio];
-        //cout << meio << endl;
         if(chute == item) {
             return meio;
         }
