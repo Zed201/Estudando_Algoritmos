@@ -42,7 +42,7 @@ class Lista_Ord{
             while (this.vetor[i] <= pivo) {
                 i++;
             }
-            while (this.vetor[j] >= pivo) {
+            while (this.vetor[j] > pivo) {
                 j--;
             }
             if (i < start + count && start + count < j) {
