@@ -19,7 +19,6 @@ public:
         this->Vetor = (t*) malloc(sizeof(t) * this->Tam);
         this->addVetor(vet);
     }
-    // chama com o 0 e o tamanho - 1
 
     void Quick_Sort(int start, int end){
         if (start >= end)
@@ -50,8 +49,8 @@ public:
 
 
 int main(){
-    int vet2[] = { 18,47, 58, 1, 11, 22, 18, 2, 4, 99, 67, 27};
-    Lista<int> ls(12, vet2);
+    char vet2[] = { 'b','c', 'n', 'p', 'k', 't', 'i', 'a'};
+    Lista<char> ls(8, vet2);
     ls.Quick_Sort(0, ls.Tam - 1);
     for (int i = 0; i < ls.Tam; i++)
     {

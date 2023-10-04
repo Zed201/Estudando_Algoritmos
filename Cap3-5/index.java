@@ -5,13 +5,11 @@ public class index {
     static public void main(String[] args) {
         int vet[] = {18, 47, 58, 1, 11, 22, 18, 2, 4, 99, 67, 27};
         Lista_Ord listinha = new Lista_Ord(12, vet);
-        listinha.Quicksort(0, 11);
-        for (int i : listinha.vetor) {
-            System.out.println(i);
-        }
+        listinha.QuickSort(0, listinha.Tam - 1);
+        listinha.view();
     }
 }
-// por algum motivo nao quer pegar, ver outras implementacoes
+
 class Lista_Ord{
     public int Tam;
     public int vetor[];
@@ -23,40 +21,47 @@ class Lista_Ord{
             this.vetor[i] = vtr[i];
     }
     
-    public void Quicksort(int start, int End) {
-        // verificar a existencia de algo melhor para dar swap
-        int pivo = this.vetor[start], count = 0, swap = 0, i = start, j = End;
-        if (start >= End) {
+    public void view() {
+        for (int i : this.vetor) {
+            System.out.println(i);
+        }
+    }
+
+    public void Swap(int vet[], int x, int y) {
+        int swap = vet[x];
+        vet[x] = vet[y];
+        vet[y] = swap;
+    }
+    
+    public void QuickSort(int ini, int fin){
+        if (ini >= fin) {
             return;
         }
-        for (int j2 = start + 1; j2 < this.Tam; j2++) {
-            if (this.vetor[j2] <= pivo) {
+        int pivo = this.vetor[ini], i = ini, j = fin, count = 0;
+        for (int k = ini + 1; k <= fin; k++) {
+            if (this.vetor[k] <= pivo) {
                 count++;
             }
         }
-        swap = this.vetor[start];
-        this.vetor[start] = this.vetor[start+count];
-        this.vetor[start + count] = swap;
-        
-        while (i < start + count && start + count < j) {
+
+        int pvI = ini + count;
+        this.Swap(this.vetor, ini, pvI);
+        while (i < pvI && pvI < j) {
             while (this.vetor[i] <= pivo) {
                 i++;
             }
             while (this.vetor[j] > pivo) {
                 j--;
             }
-            if (i < start + count && start + count < j) {
-                swap = this.vetor[i];
-                this.vetor[i] = this.vetor[j];
-                this.vetor[j] = swap;
+            if (i < pvI && pvI < j) {
+                this.Swap(this.vetor, i, j);
                 i++;
                 j--;
             }
         };
-    
-        this.Quicksort(start, start + count - 1);
-        this.Quicksort(start + count + 1, End);
-
+        this.QuickSort(ini, pvI - 1);
+        this.QuickSort(pvI + 1, fin);
     }
+
 
 }
