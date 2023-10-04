@@ -5,7 +5,9 @@ public class index {
     static public void main(String[] args) {
         int vet[] = {18, 47, 58, 1, 11, 22, 18, 2, 4, 99, 67, 27};
         Lista_Ord listinha = new Lista_Ord(12, vet);
+        long start = System.currentTimeMillis();
         listinha.QuickSort(0, listinha.Tam - 1);
+        System.out.println("Tempo de execução: " + (System.currentTimeMillis() - start)/1000 + "ms");
         listinha.view();
     }
 }
