@@ -45,7 +45,16 @@ def quickSort(arr):
             if i <= pivo: menores.append(i)
             if i >= pivo: maiores.append(i)
         return quickSort(menores) + [pivo] + quickSort(maiores)
+import time
+vet = [18, 47, 58, 1, 11, 22, 18, 2, 4, 99, 67, 27]
 
-print(quickSort([3,4,5,6,78,2]))
+t1=time.time()
+print(quickSort(vet))
+t2=time.time()
+print(t2-t1)
 
-
+caderno_hash = {
+    "nome": "Caderno",
+    "preco": 10.00,
+    "qtd": 10
+}

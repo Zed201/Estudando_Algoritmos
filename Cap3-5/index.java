@@ -2,16 +2,16 @@
  * index
  */
 public class index {
-    static public void main(String[] args){
-        int vet[] = {-2, -3, -5, -6, -8, 10, 4, 56, 7, 4};
-        Lista_Ord listinha = new Lista_Ord(9, vet);
-        listinha.Quicksort(0, listinha.Tam - 1);
+    static public void main(String[] args) {
+        int vet[] = {18, 47, 58, 1, 11, 22, 18, 2, 4, 99, 67, 27};
+        Lista_Ord listinha = new Lista_Ord(12, vet);
+        listinha.Quicksort(0, 11);
         for (int i : listinha.vetor) {
             System.out.println(i);
         }
     }
 }
-
+// por algum motivo nao quer pegar, ver outras implementacoes
 class Lista_Ord{
     public int Tam;
     public int vetor[];
