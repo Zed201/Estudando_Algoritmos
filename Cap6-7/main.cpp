@@ -139,7 +139,8 @@ namespace PL{
             }
     };
 
-    
+    // grafos só recebendo identificadores como tipo de string, int ia complicar para aumentar o codigo ou bugar as coisas, pela parte do hash e pela parte do
+    // va_args 
     class Grafo {
         private:
             HashTable<string, list<string>> Tabela;
