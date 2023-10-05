@@ -53,6 +53,7 @@ namespace PL{
                 this->dados.push_back(nDado);
                 this->qtdDados = this->dados.size();
             }
+            // apenas utilitarios
             void view(){
                 for (T i: this->dados)
                 {
@@ -86,8 +87,8 @@ namespace PL{
             // tentar achar alguma implementacao sem array nem list
             array<list<Chave_Valor>, tamanho_Total> table;
             int hash(KeyType chave){
-                int counter = 0;
-                int i = 1;
+                // funcao hash basica com base no valor ASCii das letras da string e da posicao, em rezao disso apenas chaves de string funcionam
+                int counter = 0, i = 1;
                 for (char& c: chave) {
                     counter += i++ * static_cast<int>(c);
                 }
@@ -95,10 +96,12 @@ namespace PL{
                 return index;
             }
         public:
+            // So para conseguir o index de algum elemento no array
             int GetSizeIndex(KeyType chave){
                 int index = this->hash(chave);
                 return this->table[index].size();
             }
+            // retornar o valor do dado requisitado
             ValueType LookUp(KeyType chave){
                 int index = this->hash(chave);
                     for (auto &e : this->table[index])
@@ -112,7 +115,7 @@ namespace PL{
                     ValueType ret;
                     return ret;
             }
-
+            // Colocar dados na hashtable
             void Put(KeyType chave, ValueType Valor){
                 Chave_Valor *entrada = new Chave_Valor();
                 entrada->index = this->hash(chave);
@@ -122,7 +125,7 @@ namespace PL{
                 this->table[entrada->index].push_front(*entrada);
                 this->qtd_Dados++;
             }
-
+            // basicamente nao usada
             bool Del(KeyType chave){
                 int index = this->hash(chave);
                 auto i = this->table[index].begin();
@@ -139,8 +142,9 @@ namespace PL{
             }
     };
 
-    // grafos só recebendo identificadores como tipo de string, int ia complicar para aumentar o codigo ou bugar as coisas, pela parte do hash e pela parte do
-    // va_args 
+    // grafos só recebendo identificadores como tipo de string, int ia complicar para aumentar o codigo ou bugar as coisas, 
+    //pela parte do hash e pela parte do va_args 
+    // Grafo sem pesos
     class Grafo {
         private:
             HashTable<string, list<string>> Tabela;
@@ -156,6 +160,7 @@ namespace PL{
                     for (int i = 0; i < qtd_lig; i++)
                     {
                             // o var_args não reconhece o string, e se eu colocar o tipo do grafo de char* ele da erro na funcao de hash
+                            // pois o forreacho nao pega com ponteiros, ja que nao possuem iterator
                             lista_vertices.push_back(va_arg(lista_args, char*));
                     }
                     va_end(lista_args);
@@ -163,7 +168,7 @@ namespace PL{
                 
                 Tabela.Put(nome_p, lista_vertices);
             }
-    
+            // Implementacao da pesquisa em largura
             bool Pesquisa_Largura(string ini, string fin){
                 Fila<string> fl, verificados;
                 list<string> lisI = this->Tabela.LookUp(ini);
@@ -214,7 +219,9 @@ int main(){
     cin >> ini;
     cin >> fin;
     time_t t1 = clock();
+    //----------------------------------------------
     cout << gf.Pesquisa_Largura(ini, fin) << endl;
+    //----------------------------------------------
     cout << (clock() - t1) / CLOCKS_PER_SEC << "s" << endl;    
 
     return 0;
