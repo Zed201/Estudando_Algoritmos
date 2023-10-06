@@ -4,6 +4,8 @@
  * mas preguica de fazer tudo na mao, entao vou usar a biblioteca do Java mesmo.
  * Usei consideravelmente o copilot, pois basicamente copiei oque tinha no .py
  */
+
+ // Todo Fazer um teste com os grafos do livro
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
